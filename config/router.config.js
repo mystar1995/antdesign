@@ -19,7 +19,7 @@ export default [
       // dashboard
       { path: '/', redirect: '/dashboard/analysis' },
       {
-        path: '/dashboard',
+        path: '/dashboard/analysis',
         name: 'dashboard',
         icon: 'dashboard',
         component:'./Dashboard/Analysis'
