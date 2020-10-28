@@ -87,7 +87,7 @@ export default class SiderMenu extends PureComponent {
   };
 
   render() {
-    const { logo, collapsed, onCollapse, fixSiderbar, theme } = this.props;
+    const { logo, collapsed, onCollapse, fixSiderbar, theme,sandboxenable,sandbox } = this.props;
     const { openKeys } = this.state;
     const defaultProps = collapsed ? {} : { openKeys };
     return (
@@ -120,7 +120,8 @@ export default class SiderMenu extends PureComponent {
         <div style={{display:'flex',justifyContent:'space-between',padding:'0 20px'}}>
           <div style={{color:'white'}}>Sandbox mode</div>
           <Switch
-            defaultChecked
+            checked={sandbox}
+            onChange={(checked)=>sandboxenable(checked)}
           />
         </div>
       </Sider>

@@ -23,6 +23,7 @@ import {
   Bar,
   Pie,
   TimelineChart,
+  D3Chart
 } from '@/components/Charts';
 import Trend from '@/components/Trend';
 import NumberInfo from '@/components/NumberInfo';
@@ -381,6 +382,7 @@ class Analysis extends Component {
               }
               contentHeight={46}
             >
+              
               <MiniBar data={visitData} />
             </ChartCard>
           </Col>
@@ -667,6 +669,16 @@ class Analysis extends Component {
               </TabPane>
             ))}
           </Tabs>
+        </Card>
+        <Card
+          loading={loading}
+          className={styles.offlineCard}
+          bordered={false}
+          bodyStyle={{ padding: '0 0 32px 0' }}
+          style={{ marginTop: 32 }}
+          title="D3 Chart"
+        >
+          <D3Chart></D3Chart>
         </Card>
       </GridContent>
     );

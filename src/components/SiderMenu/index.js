@@ -19,7 +19,7 @@ const getFlatMenuKeys = menuData => {
 };
 
 const SiderMenuWrapper = props => {
-  const { isMobile, menuData, collapsed } = props;
+  const { isMobile, menuData, collapsed,sandboxenable,sandbox } = props;
   return isMobile ? (
     <Drawer
       visible={!collapsed}
@@ -36,6 +36,8 @@ const SiderMenuWrapper = props => {
         {...props}
         flatMenuKeys={getFlatMenuKeys(menuData)}
         collapsed={isMobile ? false : collapsed}
+        sandboxenable={sandboxenable}
+        sandbox={sandbox}
       />
 
     </Drawer>

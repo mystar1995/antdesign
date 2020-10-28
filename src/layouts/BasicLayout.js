@@ -82,6 +82,7 @@ class BasicLayout extends React.PureComponent {
   state = {
     rendering: true,
     isMobile: false,
+    sandbox:false
   };
 
   componentDidMount() {
@@ -186,6 +187,12 @@ class BasicLayout extends React.PureComponent {
     };
   };
 
+  sandboxenable = (checked) => {
+    this.setState({
+      sandbox:checked
+    })
+  }
+
   getBashRedirect = () => {
     // According to the url parameter to redirect
     // 这里是重定向的,重定向到 url 的 redirect 参数所示地址
@@ -235,6 +242,8 @@ class BasicLayout extends React.PureComponent {
             onCollapse={this.handleMenuCollapse}
             menuData={menuData}
             isMobile={isMobile}
+            sandboxenable={this.sandboxenable}
+            sandbox={this.state.sandbox}
             {...this.props}
           />
         )}
@@ -251,6 +260,14 @@ class BasicLayout extends React.PureComponent {
             isMobile={isMobile}
             {...this.props}
           />
+          {
+            this.state.sandbox && (
+              <div id="sandbox_enable" style={{backgroundColor:'#e78b20',color:'white',fontSize:'25px',fontWeight:'bold',padding:'10px 20px'}}>
+                SandBox is Active
+              </div>
+            )
+          }
+          
           <Content style={this.getContentStyle()}>{children}</Content>
           <Footer />
         </Layout>

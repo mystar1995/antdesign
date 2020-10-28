@@ -1,6 +1,19 @@
 export default {
   'navbar.lang': '中文',
   'menu.home': 'Home',
+  //new inserted
+  'menu.data': 'Data',
+  'menu.analytics':'Analytics',
+  'menu.analytics.authorization':'Authorization',
+  'menu.analytics.rates':'Rates',
+  'menu.analytics.analytic#1':'Analytic #1',
+  'menu.analytics.analytic#2':'Analytic #2',
+  'menu.analytics.analytic#3':'Analytic #3',
+  'menu.analytics.analytic#4':'Analytic #4',
+  'menu.analytics.worldwide':'Worldwide',
+  'menu.alerts':'Alerts',
+  'menu.reports':'Reports',
+  //inserted end
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': 'Analysis',
   'menu.dashboard.monitor': 'Monitor',
