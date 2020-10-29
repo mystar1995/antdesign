@@ -48,6 +48,11 @@ export default class GlobalHeaderRight extends PureComponent {
     }
   };
 
+  logout = () => {
+    window.localStorage.removeItem('user');
+    window.location.href = "/user/login";
+  }
+
   render() {
     const {
       currentUser,
@@ -72,7 +77,7 @@ export default class GlobalHeaderRight extends PureComponent {
           <FormattedMessage id="menu.account.trigger" defaultMessage="Trigger Error" />
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item key="logout">
+        <Menu.Item key="logout" onClick={this.logout}>
           <Icon type="logout" />
           退出登录
         </Menu.Item>
@@ -85,17 +90,6 @@ export default class GlobalHeaderRight extends PureComponent {
     }
     return (
       <div className={className}>
-        <Tooltip title="使用文档">
-          <a
-            target="_blank"
-            href="https://pro.ant.design/docs/getting-started"
-            rel="noopener noreferrer"
-            className={styles.action}
-            title="使用文档"
-          >
-            <Icon type="question-circle-o" />
-          </a>
-        </Tooltip>
         <NoticeIcon
           className={styles.action}
           count={currentUser.notifyCount}
@@ -126,6 +120,17 @@ export default class GlobalHeaderRight extends PureComponent {
             emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
           />
         </NoticeIcon>
+        <Tooltip title="使用文档">
+          <a
+            target="_blank"
+            href="https://pagospeacock.com"
+            rel="noopener noreferrer"
+            className={styles.action}
+            title="使用文档"
+          >
+            <Icon type="question-circle-o" />
+          </a>
+        </Tooltip>
         {currentUser.name ? (
           <Dropdown overlay={menu}>
             <span className={`${styles.action} ${styles.account}`}>

@@ -122,6 +122,7 @@ export default class SiderMenu extends PureComponent {
           <Switch
             checked={sandbox}
             onChange={(checked)=>sandboxenable(checked)}
+            
           />
         </div>
       </Sider>

@@ -86,7 +86,7 @@ class BasicLayout extends React.PureComponent {
   };
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch ,currentuser} = this.props;
     dispatch({
       type: 'user/fetchCurrent',
     });
@@ -105,7 +105,15 @@ class BasicLayout extends React.PureComponent {
           isMobile: mobile,
         });
       }
+
+      
     });
+
+    console.log(currentuser)
+      if(!window.localStorage.getItem("user"))
+      {
+        window.location.href = "/user/login";
+      }
   }
 
   componentDidUpdate() {
@@ -293,8 +301,9 @@ class BasicLayout extends React.PureComponent {
   }
 }
 
-export default connect(({ global, setting }) => ({
+export default connect(({ global, setting,user }) => ({
   collapsed: global.collapsed,
   layout: setting.layout,
+  currentuser:user.currentuser,
   ...setting,
 }))(BasicLayout);

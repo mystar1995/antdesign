@@ -43,13 +43,17 @@ class LoginPage extends Component {
     const { type } = this.state;
     if (!err) {
       const { dispatch } = this.props;
-      dispatch({
-        type: 'login/login',
-        payload: {
-          ...values,
-          type,
-        },
-      });
+      // dispatch({
+      //   type: 'addCurrentUser',
+      //   payload: {
+      //     ...values,
+      //     type,
+      //   },
+      // });
+
+      window.localStorage.setItem("user",true);
+
+      window.location.href = "/";
     }
   };
 

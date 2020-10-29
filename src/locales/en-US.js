@@ -3,6 +3,13 @@ export default {
   'menu.home': 'Home',
   //new inserted
   'menu.data': 'Data',
+  'menu.data.authorization':'Authorization',
+  'menu.data.rates':'Rates',
+  'menu.data.analytic#1':'Analytic #1',
+  'menu.data.analytic#2':'Analytic #2',
+  'menu.data.analytic#3':'Analytic #3',
+  'menu.data.analytic#4':'Analytic #4',
+  'menu.data.worldwide':'Worldwide',
   'menu.analytics':'Analytics',
   'menu.analytics.authorization':'Authorization',
   'menu.analytics.rates':'Rates',

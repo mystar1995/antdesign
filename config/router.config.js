@@ -47,6 +47,43 @@ export default [
         icon: 'form',
         name: 'data',
         component: './Forms/BasicForm',
+        routes: [
+          {
+            path: '/form/table-list',
+            name: 'authorization',
+            component:  './Profile/BasicProfile',
+          },
+          {
+            path: '/form/basic-list',
+            name: 'rates',
+            component: './List/BasicList',
+          },
+          {
+            path: '/form/card-list',
+            name: 'analytic#1',
+            component: './List/CardList',
+          },
+          {
+            path: '/form/search',
+            name: 'analytic#2',
+            component: './List/List',
+          },
+          {
+            path: '/form/applications',
+            name: 'analytic#3',
+            component:'./List/Applications'
+          },
+          {
+            path: '/form/articles',
+            name: 'analytic#4',
+            component:'./List/Articles'
+          },
+          {
+            path: '/form/projects',
+            name: 'worldwide',
+            component:'./List/Projects'
+          }
+        ],
         // routes: [
         //   {
         //     path: '/form/basic-form',
