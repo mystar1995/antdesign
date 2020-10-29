@@ -18,6 +18,7 @@ export default [
     routes: [
       // dashboard
       { path: '/', redirect: '/dashboard/analysis' },
+      {path:'/document',component:'./Document'},
       {
         path: '/dashboard/analysis',
         name: 'dashboard',

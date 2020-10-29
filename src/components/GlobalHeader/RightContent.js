@@ -123,7 +123,7 @@ export default class GlobalHeaderRight extends PureComponent {
         <Tooltip title="使用文档">
           <a
             target="_blank"
-            href="https://pagospeacock.com"
+            href="https://www.pagospeacock.com"
             rel="noopener noreferrer"
             className={styles.action}
             title="使用文档"
@@ -147,18 +147,16 @@ export default class GlobalHeaderRight extends PureComponent {
         ) : (
           <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
         )}
-        {/* <Button
+        <Button
           size="small"
           ghost={theme === 'dark'}
           style={{
             margin: '0 8px',
           }}
-          onClick={() => {
-            this.changLang();
-          }}
+         
         >
-          <FormattedMessage id="navbar.lang" />
-        </Button> */}
+          English
+        </Button>
       </div>
     );
   }
