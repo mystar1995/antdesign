@@ -41,7 +41,7 @@ export default class GlobalHeaderRight extends PureComponent {
 
   changLang = () => {
     const locale = getLocale();
-    if (!locale || locale === 'zh-CN') {
+    if (locale === 'zh-CN') {
       setLocale('en-US');
     } else {
       setLocale('zh-CN');
@@ -85,17 +85,6 @@ export default class GlobalHeaderRight extends PureComponent {
     }
     return (
       <div className={className}>
-        <HeaderSearch
-          className={`${styles.action} ${styles.search}`}
-          placeholder="站内搜索"
-          dataSource={['搜索提示一', '搜索提示二', '搜索提示三']}
-          onSearch={value => {
-            console.log('input', value); // eslint-disable-line
-          }}
-          onPressEnter={value => {
-            console.log('enter', value); // eslint-disable-line
-          }}
-        />
         <Tooltip title="使用文档">
           <a
             target="_blank"
@@ -147,13 +136,13 @@ export default class GlobalHeaderRight extends PureComponent {
                 src={'https://trello-attachments.s3.amazonaws.com/5f976fd4b73f2542fcb48b27/5f9772a443dd388efcae62b7/3c66cd1c3e377dd83116fe43839c55c7/Albert.jpeg'}
                 alt="avatar"
               />
-              <span className={styles.name}>{currentUser.name}</span>
+              <span className={styles.name}>Joe Doe</span>
             </span>
           </Dropdown>
         ) : (
           <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
         )}
-        <Button
+        {/* <Button
           size="small"
           ghost={theme === 'dark'}
           style={{
@@ -164,7 +153,7 @@ export default class GlobalHeaderRight extends PureComponent {
           }}
         >
           <FormattedMessage id="navbar.lang" />
-        </Button>
+        </Button> */}
       </div>
     );
   }

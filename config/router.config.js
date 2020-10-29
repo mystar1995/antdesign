@@ -97,7 +97,7 @@ export default [
           {
             path: '/list/table-list',
             name: 'authorization',
-            component: './List/TableList',
+            component:  './Profile/BasicProfile',
           },
           {
             path: '/list/basic-list',
@@ -152,7 +152,7 @@ export default [
         path: '/profile',
         name: 'alerts',
         icon: 'profile',
-        component: './Profile/BasicProfile',
+        component: './List/TableList',
         // routes: [
         //   // profile
         //   {
