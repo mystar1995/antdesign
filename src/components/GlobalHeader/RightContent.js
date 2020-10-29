@@ -123,7 +123,7 @@ export default class GlobalHeaderRight extends PureComponent {
         <Tooltip title="使用文档">
           <a
             target="_blank"
-            href="https://www.pagospeacock.com"
+            href="http://www.pagospeacock.com"
             rel="noopener noreferrer"
             className={styles.action}
             title="使用文档"
