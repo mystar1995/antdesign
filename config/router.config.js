@@ -71,26 +71,26 @@ export default [
             name: 'analytic#1',
             component: './List/CardList',
           },
-          {
-            path: '/form/search',
-            name: 'analytic#2',
-            component: './List/List',
-          },
-          {
-            path: '/form/applications',
-            name: 'analytic#3',
-            component:'./List/Applications'
-          },
-          {
-            path: '/form/articles',
-            name: 'analytic#4',
-            component:'./List/Articles'
-          },
-          {
-            path: '/form/projects',
-            name: 'worldwide',
-            component:'./List/Projects'
-          }
+          // {
+          //   path: '/form/search',
+          //   name: 'analytic#2',
+          //   component: './List/List',
+          // },
+          // {
+          //   path: '/form/applications',
+          //   name: 'analytic#3',
+          //   component:'./List/Applications'
+          // },
+          // {
+          //   path: '/form/articles',
+          //   name: 'analytic#4',
+          //   component:'./List/Articles'
+          // },
+          // {
+          //   path: '/form/projects',
+          //   name: 'worldwide',
+          //   component:'./List/Projects'
+          // }
         ],
         // routes: [
         //   {

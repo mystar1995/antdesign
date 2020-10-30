@@ -3,9 +3,9 @@ export default {
   'menu.home': 'Home',
   //new inserted
   'menu.data': 'Data',
-  'menu.data.authorization':'Authorization',
-  'menu.data.rates':'Rates',
-  'menu.data.analytic#1':'Data #1',
+  'menu.data.authorization':'Upload',
+  'menu.data.rates':'External Sources',
+  'menu.data.analytic#1':'API',
   'menu.data.analytic#2':'Data #2',
   'menu.data.analytic#3':'Data #3',
   'menu.data.analytic#4':'Data #4',
