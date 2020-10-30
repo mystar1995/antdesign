@@ -12,11 +12,7 @@ export default [
   },
   {
     path:'/document',
-    component:'../layouts/DocumentLayout',
-    routes:[
-      {path:'/document',redirect:'/document/info'},
-      {path:'/document/info',component:'./Document'}
-    ]
+    component:'./Document',
   },
   // app
   {

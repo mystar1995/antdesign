@@ -297,7 +297,6 @@ class TableList extends PureComponent {
       title: '服务调用次数',
       dataIndex: 'callNo',
       sorter: true,
-      align: 'right',
       render: val => `${val} 万`,
       // mark to display a total number
       needTotal: true,
