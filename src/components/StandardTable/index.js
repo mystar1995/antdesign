@@ -61,6 +61,16 @@ class StandardTable extends PureComponent {
     this.handleRowSelectChange([], []);
   };
 
+  rendercontent = (value,row,index) => {
+    let {clicktitle} = this.props;
+    let obj = {
+      children:<a onClick={()=>clicktitle(row)}>{value}</a>,
+      props:{}
+    }
+
+    return obj;
+  }
+
   render() {
     const { selectedRowKeys, needTotalList } = this.state;
     const {
@@ -84,9 +94,18 @@ class StandardTable extends PureComponent {
       }),
     };
 
+    console.log(columns);
+    
+    columns.map((row,index)=>{
+      if(index == 0)
+      {
+        row.render = this.rendercontent;
+      }
+    })
     return (
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
+          <h3>规则名称</h3>
           <Alert
             message={
               <Fragment>

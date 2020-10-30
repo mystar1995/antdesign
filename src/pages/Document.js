@@ -11,14 +11,14 @@ export default class Document extends Component
     {
         return (
             <div>
-                <h2>Getting Started</h2>
-                <h1>Foreword</h1>
-                <p>Ant Design Pro is a production-ready solution for admin interfaces. Built on the design principles developed by Ant Design, this project introduces higher level components; we have developed templates, components, and a corresponding design kit to improve the user and development experience for admin interfaces.</p>
+                <h2 style={{fontSize:'2em'}}>Getting Started</h2>
+                <h1 style={{fontSize:'1.8em'}}>Foreword</h1>
+                <p  style={{fontSize:'1.2em'}}>Ant Design Pro is a production-ready solution for admin interfaces. Built on the design principles developed by Ant Design, this project introduces higher level components; we have developed templates, components, and a corresponding design kit to improve the user and development experience for admin interfaces.</p>
 
-                <p>Your help is welcomed and much appreciated. With your feedback we can make incremental progress towards elegant and well designed components. Please open a issue or submit a pull request!</p>
+                <p style={{fontSize:'1.2em'}}> Your help is welcomed and much appreciated. With your feedback we can make incremental progress towards elegant and well designed components. Please open a issue or submit a pull request!</p>
 
-                <p>With those objectives in mind, we have built the following templates and a scaffold based on React.js, which should help you prototyping production-ready admin interfaces.</p>
-                <ul>
+                <p style={{fontSize:'1.2em'}}>With those objectives in mind, we have built the following templates and a scaffold based on React.js, which should help you prototyping production-ready admin interfaces.</p>
+                <ul style={{fontSize:'1.2em'}}>
                     <li>
                         - Dashboard
                         <ul>

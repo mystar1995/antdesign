@@ -80,11 +80,11 @@ class LoginPage extends Component {
             this.loginForm = form;
           }}
         >
-          <Tab key="account" tab="账户密码登录">
+          <Tab key="account" tab="Account password login">
             {login.status === 'error' &&
               login.type === 'account' &&
               !submitting &&
-              this.renderMessage('账户或密码错误（admin/888888）')}
+              this.renderMessage('Incorrect account or password（admin/888888）')}
             <UserName name="userName" placeholder="admin/user" />
             <Password
               name="password"
@@ -92,30 +92,30 @@ class LoginPage extends Component {
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
             />
           </Tab>
-          <Tab key="mobile" tab="手机号登录">
+          <Tab key="mobile" tab="Mobile phone number login">
             {login.status === 'error' &&
               login.type === 'mobile' &&
               !submitting &&
-              this.renderMessage('验证码错误')}
+              this.renderMessage('Verification code error')}
             <Mobile name="mobile" />
             <Captcha name="captcha" countDown={120} onGetCaptcha={this.onGetCaptcha} />
           </Tab>
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
-              自动登录
+              Auto Login
             </Checkbox>
             <a style={{ float: 'right' }} href="">
-              忘记密码
+              Forget Password
             </a>
           </div>
-          <Submit loading={submitting}>登录</Submit>
+          <Submit loading={submitting}>Log in</Submit>
           <div className={styles.other}>
-            其他登录方式
+            Other login methods
             <Icon className={styles.icon} type="alipay-circle" />
             <Icon className={styles.icon} type="taobao-circle" />
             <Icon className={styles.icon} type="weibo-circle" />
             <Link className={styles.register} to="/User/Register">
-              注册账户
+            Register Account
             </Link>
           </div>
         </Login>

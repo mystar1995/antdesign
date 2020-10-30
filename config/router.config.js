@@ -10,6 +10,14 @@ export default [
       { path: '/user/register-result', component: './User/RegisterResult' },
     ],
   },
+  {
+    path:'/document',
+    component:'../layouts/DocumentLayout',
+    routes:[
+      {path:'/document',redirect:'/document/info'},
+      {path:'/document/info',component:'./Document'}
+    ]
+  },
   // app
   {
     path: '/',
@@ -18,7 +26,6 @@ export default [
     routes: [
       // dashboard
       { path: '/', redirect: '/dashboard/analysis' },
-      {path:'/document',component:'./Document'},
       {
         path: '/dashboard/analysis',
         name: 'dashboard',

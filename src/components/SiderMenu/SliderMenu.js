@@ -118,7 +118,7 @@ export default class SiderMenu extends PureComponent {
           {...defaultProps}
         />
         <div style={{display:'flex',justifyContent:'space-between',padding:'0 20px'}}>
-          <div style={{color:'white'}}>Sandbox mode</div>
+          <div style={{color:'rgba(255, 255, 255, 0.65)'}}>Sandbox mode</div>
           <Switch
             checked={sandbox}
             onChange={(checked)=>sandboxenable(checked)}

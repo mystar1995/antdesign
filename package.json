@@ -23,6 +23,8 @@
     "prettier": "prettier --write ./src/**/**/**/*"
   },
   "dependencies": {
+    "@ant-design/pro-descriptions": "^1.0.29",
+    "@ant-design/pro-table": "^2.9.13",
     "@antv/data-set": "^0.9.0",
     "@babel/runtime": "^7.0.0",
     "antd": "^3.9.0",

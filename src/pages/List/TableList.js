@@ -20,6 +20,7 @@ import {
   Divider,
   Steps,
   Radio,
+  Drawer
 } from 'antd';
 import StandardTable from '@/components/StandardTable';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
@@ -280,6 +281,7 @@ class TableList extends PureComponent {
     selectedRows: [],
     formValues: {},
     stepFormValues: {},
+    row:false
   };
 
   columns = [
@@ -497,12 +499,12 @@ class TableList extends PureComponent {
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-          <Col md={8} sm={24}>
+          <Col md={6} sm={24}>
             <FormItem label="规则名称">
               {getFieldDecorator('name')(<Input placeholder="请输入" />)}
             </FormItem>
           </Col>
-          <Col md={8} sm={24}>
+          <Col md={6} sm={24}>
             <FormItem label="使用状态">
               {getFieldDecorator('status')(
                 <Select placeholder="请选择" style={{ width: '100%' }}>
@@ -512,16 +514,26 @@ class TableList extends PureComponent {
               )}
             </FormItem>
           </Col>
-          <Col md={8} sm={24}>
+          <Col md={6} sm={24}>
+            <FormItem label="使用状态">
+              {getFieldDecorator('status')(
+                <Select placeholder="请选择" style={{ width: '100%' }}>
+                  <Option value="0">关闭</Option>
+                  <Option value="1">运行中</Option>
+                </Select>
+              )}
+            </FormItem>
+          </Col>
+          <Col md={6} sm={24}>
             <span className={styles.submitButtons}>
               <Button type="primary" htmlType="submit">
-                查询
+                Reset
               </Button>
               <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
-                重置
+                Query
               </Button>
               <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
-                展开 <Icon type="down" />
+                Expand <Icon type="down" />
               </a>
             </span>
           </Col>
@@ -609,6 +621,13 @@ class TableList extends PureComponent {
     return expandForm ? this.renderAdvancedForm() : this.renderSimpleForm();
   }
 
+  clicktable = (row) => {
+    console.log("selected",row);
+    this.setState({
+      row:row
+    })
+  }
+
   render() {
     const {
       rule: { data },
@@ -635,21 +654,10 @@ class TableList extends PureComponent {
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
-            <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleModalVisible(true)}>
-                新建
-              </Button>
-              {selectedRows.length > 0 && (
-                <span>
-                  <Button>批量操作</Button>
-                  <Dropdown overlay={menu}>
-                    <Button>
-                      更多操作 <Icon type="down" />
-                    </Button>
-                  </Dropdown>
-                </span>
-              )}
-            </div>
+          </div>
+        </Card>
+        <Card bordered={false} style={{marginTop:'30px'}}>
+          
             <StandardTable
               selectedRows={selectedRows}
               loading={loading}
@@ -657,8 +665,8 @@ class TableList extends PureComponent {
               columns={this.columns}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
+              clicktitle={this.clicktable}
             />
-          </div>
         </Card>
         <CreateForm {...parentMethods} modalVisible={modalVisible} />
         {stepFormValues && Object.keys(stepFormValues).length ? (
@@ -668,6 +676,40 @@ class TableList extends PureComponent {
             values={stepFormValues}
           />
         ) : null}
+        <Drawer
+              width={600}
+              visible={this.state.row?true:false}  
+              onClose={()=>this.setState({row:false})}   
+              closable={false} 
+            >
+              {
+                this.state.row && (
+                  <div>
+                    <div style={{display:'flex',alignItems:'center'}}>
+                      <h3>{this.state.row.name}</h3>
+                      <Fragment>
+                        <a  style={{marginLeft:'auto'}} onClick={() => this.handleUpdateModalVisible(true, this.state.row)}>配置</a>
+                        <Divider type="vertical" />
+                        <a href="">订阅警报</a>
+                      </Fragment>
+                    </div>
+                    <div style={{marginTop:'30px'}}>
+                        <Row >
+                          <Col lg={12} md={12}>规则名称 <Icon type="info-circle"></Icon> : <a>{this.state.row.name}</a></Col>
+                          <Col lg={12} md={12}>描述 : {this.state.row.desc}</Col>
+                        </Row>
+                        <Row style={{marginTop:'15px'}}>
+                          <Col lg={12} md={12}>服务调用次数 : {this.state.row.callNo} 万</Col>
+                          <Col lg={12} md={12}>状态 : <Badge status={statusMap[this.state.row.status]} text={status[this.state.row.status]}></Badge></Col>
+                        </Row>
+                        <Row style={{marginTop:'15px'}}>
+                          <Col lg={12} md={12}>上次调度时间 : {moment(this.state.row.createdAt).format('YYYY-MM-DD HH:mm:ss')}</Col>
+                        </Row>
+                    </div>
+                  </div>
+                )
+              }
+        </Drawer>
       </PageHeaderWrapper>
     );
   }
