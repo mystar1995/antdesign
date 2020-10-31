@@ -11,6 +11,7 @@ import {
   Radio,
   Icon,
   Tooltip,
+  Upload
 } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import styles from './style.less';
@@ -19,6 +20,7 @@ const FormItem = Form.Item;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
+const {Dragger} = Upload;
 
 export default
 @connect(({ loading }) => ({
@@ -194,6 +196,15 @@ class BasicForms extends PureComponent {
                 提交
               </Button>
               <Button style={{ marginLeft: 8 }}>保存</Button>
+            </FormItem>
+            <FormItem {...formItemLayout} style={{display:'flex',justifyContent:'center'}}>
+              <Dragger  style={{margin:'auto'}} multiple={true}>
+                <p className="ant-upload-text" style={{marginTop:'30px'}}>Click or drag file to this area to upload</p>
+                <p className="ant-upload-hint" style={{marginBottom:'30px'}}>
+                  Support for a single or bulk upload. Strictly prohibit from uploading company data or other
+                  band files
+                </p>
+              </Dragger>
             </FormItem>
           </Form>
         </Card>

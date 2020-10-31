@@ -1,4 +1,8 @@
 import mockjs from 'mockjs';
+import config from './config.json';
+import mysql from 'mysql';
+
+const conn = mysql.createConnection(config);
 
 const titles = [
   'Alipay',
@@ -112,13 +116,17 @@ function fakeList(count) {
 let sourceData;
 
 function getFakeList(req, res) {
-  const params = req.query;
+  // const params = req.query;
 
-  const count = params.count * 1 || 20;
+  // const count = params.count * 1 || 20;
 
-  const result = fakeList(count);
-  sourceData = result;
-  return res.json(result);
+  // const result = fakeList(count);
+  // sourceData = result;
+  // return res.json(result);
+  
+  conn.query('Select * from payment',(err,result)=>{
+    res.json(result);
+  })
 }
 
 function postFakeList(req, res) {

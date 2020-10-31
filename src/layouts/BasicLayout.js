@@ -100,8 +100,7 @@ class BasicLayout extends React.PureComponent {
     });
     this.enquireHandler = enquireScreen(mobile => {
       const { isMobile } = this.state;
-      if (isMobile !== mobile) {
-        this.setState({
+      if (isMobile !== mobile) {        this.setState({
           isMobile: mobile,
         });
       }

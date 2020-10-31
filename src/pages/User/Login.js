@@ -17,6 +17,7 @@ class LoginPage extends Component {
     type: 'account',
     autoLogin: true,
   };
+  
 
   onTabChange = type => {
     this.setState({ type });
@@ -53,7 +54,7 @@ class LoginPage extends Component {
 
       window.localStorage.setItem("user",true);
 
-      window.location.href = "/";
+      window.location.href = "/dashboard/analysis";
     }
   };
 
@@ -70,6 +71,10 @@ class LoginPage extends Component {
   render() {
     const { login, submitting } = this.props;
     const { type, autoLogin } = this.state;
+    if(window.localStorage.getItem('user'))
+    {
+      window.location.href = "/dashboard/analysis";
+    }
     return (
       <div className={styles.main}>
         <Login

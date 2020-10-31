@@ -21,7 +21,7 @@ export default [
     Routes: ['src/pages/Authorized'],
     routes: [
       // dashboard
-      { path: '/', redirect: '/dashboard/analysis' },
+      { path: '/', redirect: '/user/login' },
       {
         path: '/dashboard/analysis',
         name: 'dashboard',
@@ -50,17 +50,16 @@ export default [
         path: '/form',
         icon: 'form',
         name: 'data',
-        component: './Forms/BasicForm',
         routes: [
           {
             path: '/form/table-list',
             name: 'authorization',
-            component:  './Profile/BasicProfile',
+            component: './Forms/BasicForm',
           },
           {
             path: '/form/basic-list',
             name: 'rates',
-            component: './List/BasicList',
+            component: './List/CardList',
           },
           {
             path: '/form/card-list',

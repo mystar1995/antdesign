@@ -74,8 +74,8 @@ class CardList extends PureComponent {
                 <List.Item key={item.id}>
                   <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
                     <Card.Meta
-                      avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
-                      title={<a>{item.title}</a>}
+                      avatar={<img alt="" className={styles.cardAvatar} src={item.logo} />}
+                      title={<a>{item.name}</a>}
                       description={
                         <Ellipsis className={styles.item} lines={3}>
                           {item.description}
