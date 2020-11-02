@@ -162,7 +162,7 @@ function getaccesstoken(req,res){
 function save_transaction(req,res)
 {
   let data = req.body;
-  conn.query('insert into transaction(transactionid, amount,username) Values("' + data.transactionid + '",' + data.amount + ',"Joe Doe")',function(err){
+  conn.query('insert into transaction(transactionid, amount,username) Values("' + data.transactionid + '",' + data.amount + ',"Joe Doe","' + req.body.type +  '")',function(err){
     console.log(err);
     res.send({success:true});
   })
@@ -189,7 +189,7 @@ function transaction(req,res){
       }
       else
       {
-        conn.query('insert into transaction(trasnactionid,amount,username) Values("' + result.transaction.id + '",15.5,"JhonDoe")',function(err,result){
+        conn.query('insert into transaction(trasnactionid,amount,username,type) Values("' + result.transaction.id + '",15.5,"JhonDoe","braintree")',function(err,result){
           res.send({success:true})
         });
       }

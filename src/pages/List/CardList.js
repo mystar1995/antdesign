@@ -53,7 +53,7 @@ class CardList extends PureComponent {
 
   success = (payment) => {
     console.log('payment',payment);
-    api.savetransaction({transactionid:payment.paymentID,amount:100}).then(res=>console.log(res))
+    api.savetransaction({transactionid:payment.paymentID,amount:100,type:'paypal'}).then(res=>console.log(res))
   }
 
   payment = (name) => {
