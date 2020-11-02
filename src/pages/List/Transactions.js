@@ -21,7 +21,8 @@ class Transaction extends PureComponent
             dataIndex:'transactionid'
         },{
             title:'Amount',
-            dataIndex:'amount'
+            dataIndex:'amount',
+            render:val=><span>$ {val}</span>
         },{
             title:'Transaction Date', 
             dataIndex:'created_at',

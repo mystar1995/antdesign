@@ -45,8 +45,9 @@ for (let i = 0; i < 7; i += 1) {
   });
 }
 
-@connect(({ chart, loading }) => ({
+@connect(({ chart,list, loading }) => ({
   chart,
+  transaction:list.transaction,
   loading: loading.effects['chart/fetch'],
 }))
 class Analysis extends Component {
@@ -79,6 +80,12 @@ class Analysis extends Component {
       dispatch({
         type: 'chart/fetch',
       });
+
+      dispatch({
+        type:'list/transaction'
+      })
+
+
       this.timeoutId = setTimeout(() => {
         this.setState({
           loading: false,
@@ -678,7 +685,7 @@ class Analysis extends Component {
           style={{ marginTop: 32 }}
           title="D3 Chart"
         >
-          <D3Chart></D3Chart>
+          <D3Chart data={this.props.transaction.list}></D3Chart>
         </Card>
       </GridContent>
     );
