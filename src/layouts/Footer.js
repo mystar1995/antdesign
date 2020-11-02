@@ -27,7 +27,7 @@ const FooterView = () => (
       ]}
       copyright={
         <Fragment>
-          Copyright <Icon type="copyright" /> 2020 Pagos Solutions, LLC
+          Copyright <Icon type="copyright" /> 2020 Pagos Peacock
         </Fragment>
       }
     />
