@@ -17,8 +17,6 @@ export default {
         type: 'queryList',
         payload: Array.isArray(response) ? response : [],
       });
-
-      let res = yield call();
     },
     *submit({ payload }, { call, put }) {
       let callback;
