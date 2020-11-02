@@ -124,3 +124,29 @@ export async function queryNotices() {
 export async function getFakeCaptcha(mobile) {
   return request(`/api/captcha?mobile=${mobile}`);
 }
+
+export async function getaccesstoken()
+{
+  return request(`/api/accesstoken`);
+}
+
+export async function transaction(body)
+{
+  return request('/api/transaction',{
+    method:'POST',
+    body
+  })
+}
+
+export async function savetransaction(body)
+{
+  return request('/api/save_transaction',{
+    method:'POST',
+    body
+  })
+}
+
+export async function gettransaction(params)
+{
+  return request(`/api/get_transaction?${stringify(params)}`);
+}

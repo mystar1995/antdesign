@@ -174,7 +174,7 @@ export default [
           {
             path: '/list/applications',
             name: 'analytic#3',
-            component:'./List/Applications'
+            component:'./List/Transactions'
           },
           {
             path: '/list/articles',

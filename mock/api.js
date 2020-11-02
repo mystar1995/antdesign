@@ -1,8 +1,17 @@
 import mockjs from 'mockjs';
 import config from './config.json';
 import mysql from 'mysql';
+import brainconfig from './braintree_config.json';
 
+var braintree = require('braintree');
 const conn = mysql.createConnection(config);
+
+var gateway = new braintree.BraintreeGateway({
+  environment:braintree.Environment.Sandbox,
+  merchantId:brainconfig.merchantId,
+  publicKey: brainconfig.publickey,
+  privateKey:brainconfig.privatekey
+})
 
 const titles = [
   'Alipay',
@@ -125,6 +134,94 @@ function getFakeList(req, res) {
   // return res.json(result);
   
   conn.query('Select * from payment',(err,result)=>{
+    res.json(result);
+  })
+}
+
+function getaccesstoken(req,res){
+  try{
+    gateway.clientToken.generate({},function(err,response){
+      console.log(response);
+      if(err || response == undefined)
+      {
+        res.status(400).send({token:null});
+      }
+      else
+      {
+        res.status(200).send({
+          token:response.clientToken
+        })
+      }
+    })
+  }
+  catch(error){
+    res.status(400).send({token:null})
+  }
+}
+
+function save_transaction(req,res)
+{
+  let data = req.body;
+  conn.query('insert into transaction(transactionid, amount,username) Values("' + data.transactionid + '",' + data.amount + ',"Joe Doe")',function(err){
+    console.log(err);
+    res.send({success:true});
+  })
+}
+
+function transaction(req,res){
+  try{
+    let nonce = req.body.nonce;
+    var saleRequest = {
+      amount:'15.5',
+      paymentMethodNonce:nonce,
+      options:{
+        submitForSettlement:true
+      }
+    }
+
+    console.log(saleRequest);
+
+    gateway.transaction.sale(saleRequest,function(err,result){
+      console.log(result);
+      if(err || !result.success)
+      {
+        res.send({success:false});
+      }
+      else
+      {
+        conn.query('insert into transaction(trasnactionid,amount,username) Values("' + result.transaction.id + '",15.5,"JhonDoe")',function(err,result){
+          res.send({success:true})
+        });
+      }
+      
+    })
+  }
+  catch(error)
+  {
+    console.log(error);
+  }
+}
+
+function get_transaction(req,res)
+{
+  let params = req.query;
+
+  let pageSize = 10;
+  if(params.pageSize)
+  {
+    pageSize = params.pageSize;
+  }
+  conn.query('Select * from transaction',(err,row)=>{
+    let list = row;
+    let result = {
+      list,
+      pagination:{
+        total:list.length,
+        pageSize,
+        current:parseInt(params.pageSize,10) || 1
+      }
+    }
+
     res.json(result);
   })
 }
@@ -341,4 +438,8 @@ export default {
   'GET /api/fake_list': getFakeList,
   'POST /api/fake_list': postFakeList,
   'GET /api/captcha': getFakeCaptcha,
+  'GET /api/accesstoken':getaccesstoken,
+  'POST /api/transaction':transaction,
+  'POST /api/save_transaction':save_transaction,
+  'GET /api/get_transaction':get_transaction
 };

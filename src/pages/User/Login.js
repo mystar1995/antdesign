@@ -85,8 +85,7 @@ class LoginPage extends Component {
             this.loginForm = form;
           }}
         >
-          <Tab key="account" tab="Account password login">
-            {login.status === 'error' &&
+           {login.status === 'error' &&
               login.type === 'account' &&
               !submitting &&
               this.renderMessage('Incorrect account or password（admin/888888）')}
@@ -96,15 +95,6 @@ class LoginPage extends Component {
               placeholder="888888/123456"
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
             />
-          </Tab>
-          <Tab key="mobile" tab="Mobile phone number login">
-            {login.status === 'error' &&
-              login.type === 'mobile' &&
-              !submitting &&
-              this.renderMessage('Verification code error')}
-            <Mobile name="mobile" />
-            <Captcha name="captcha" countDown={120} onGetCaptcha={this.onGetCaptcha} />
-          </Tab>
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
               Auto Login

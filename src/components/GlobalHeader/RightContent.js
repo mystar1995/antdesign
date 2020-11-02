@@ -79,7 +79,7 @@ export default class GlobalHeaderRight extends PureComponent {
         <Menu.Divider />
         <Menu.Item key="logout" onClick={this.logout}>
           <Icon type="logout" />
-          退出登录
+          Logout
         </Menu.Item>
       </Menu>
     );

@@ -1,18 +1,30 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Card, Button, Icon, List } from 'antd';
+import { Card, Button, Icon, List, Modal } from 'antd';
 
 import Ellipsis from '@/components/Ellipsis';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 import styles from './CardList.less';
 
-export default
-@connect(({ list, loading }) => ({
+import PaypalExpressBtn from 'react-paypal-express-checkout';
+
+import $ from 'jquery';
+
+import DropIn from 'braintree-web-drop-in-react'
+
+import * as api from '../../services/api';
+export default @connect(({ list, loading }) => ({
   list,
   loading: loading.models.list,
 }))
 class CardList extends PureComponent {
+
+  state = {
+    braintree:false,
+    accesstoken:null
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -21,6 +33,47 @@ class CardList extends PureComponent {
         count: 8,
       },
     });
+
+    api.getaccesstoken().then(result=>{
+      console.log('result',result.token);
+      this.setState({
+        accesstoken:result.token
+      })
+    })
+
+    // fetch('/api/accesstoken').then(res=>{
+    //   console.log('response',res);
+    //   this.setState({
+    //     accesstoken:res.body.token
+    //   })
+    // })
+   console.log($('#paypal'));
+    $('#paypal').click();
+  }
+
+  success = (payment) => {
+    console.log('payment',payment);
+    api.savetransaction({transactionid:payment.paymentID,amount:100}).then(res=>console.log(res))
+  }
+
+  payment = (name) => {
+    if(name == 'Braintree')
+    {
+      this.setState({
+        braintree:true
+      })
+    }
+  }
+
+  purchase_braintree = async() => {
+      let data = await this.instance.requestPaymentMethod();
+      console.log('data',data);
+      api.transaction({nonce:data.nonce}).then(res=>{
+        console.log(res)
+      })
+      this.setState({
+        braintree:false
+      })
   }
 
   render() {
@@ -72,7 +125,7 @@ class CardList extends PureComponent {
             renderItem={item =>
               item ? (
                 <List.Item key={item.id}>
-                  <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
+                  <Card onClick={()=>this.payment(item.name)} style={{position:'relative'}} hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
                     <Card.Meta
                       avatar={<img alt="" className={styles.cardAvatar} src={item.logo} />}
                       title={<a>{item.name}</a>}
@@ -82,6 +135,19 @@ class CardList extends PureComponent {
                         </Ellipsis>
                       }
                     />
+                    {
+                      item.name == 'Paypal' && (
+                        <PaypalExpressBtn 
+                        env="sandbox"
+                        id="paypal" 
+                        client={{sandbox:'AbTIVgWom_WrYB5KaFM7ODY44IG8LV38wXiMe42VSWUYBTLVyGQGQOtf7RP9A-4Zf3hk0MqVGXr49DIU',production:""}} 
+                        currency={'USD'} 
+                        total={100}
+                        onSuccess={this.success}
+                        ></PaypalExpressBtn>
+                      )
+                    }
+                    
                   </Card>
                 </List.Item>
               ) : (
@@ -94,6 +160,14 @@ class CardList extends PureComponent {
             }
           />
         </div>
+        <Modal visible={this.state.braintree} onOk={this.purchase_braintree} onCancel={()=>this.setState({braintree:false})}>
+          {
+            this.state.accesstoken && (
+              <DropIn options={{authorization:this.state.accesstoken}} onInstance={(instance)=>this.instance = instance}></DropIn>
+            )
+          }
+          
+        </Modal>
       </PageHeaderWrapper>
     );
   }

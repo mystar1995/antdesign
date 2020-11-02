@@ -1,10 +1,13 @@
-import { queryFakeList, removeFakeList, addFakeList, updateFakeList } from '@/services/api';
+import { queryFakeList, removeFakeList, addFakeList, updateFakeList, gettransaction} from '@/services/api';
 
 export default {
   namespace: 'list',
 
   state: {
     list: [],
+    transaction:{
+      list:[]
+    }
   },
 
   effects: {
@@ -14,6 +17,8 @@ export default {
         type: 'queryList',
         payload: Array.isArray(response) ? response : [],
       });
+
+      let res = yield call();
     },
     *submit({ payload }, { call, put }) {
       let callback;
@@ -28,6 +33,13 @@ export default {
         payload: response,
       });
     },
+    *transaction({payload},{call,put}){
+      const response = yield call(gettransaction,payload);
+      yield put({
+        type:'querytransaction',
+        payload:response
+      })
+    }
   },
 
   reducers: {
@@ -37,5 +49,11 @@ export default {
         list: action.payload,
       };
     },
+    querytransaction(state,action){
+      return {
+        ...state,
+        transaction:action.payload
+      }
+    }
   },
 };
