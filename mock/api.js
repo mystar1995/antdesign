@@ -162,7 +162,7 @@ function getaccesstoken(req,res){
 function save_transaction(req,res)
 {
   let data = req.body;
-  conn.query('insert into transaction(transactionid, amount,username) Values("' + data.transactionid + '",' + data.amount + ',"Joe Doe","' + req.body.type +  '")',function(err){
+  conn.query('insert into transaction(transactionid, amount,username,type) Values("' + data.transactionid + '",' + data.amount + ',"Joe Doe","' + req.body.type +  '")',function(err){
     console.log(err);
     res.send({success:true});
   })
