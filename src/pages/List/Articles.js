@@ -116,127 +116,20 @@ class SearchList extends Component {
     return (
       <Fragment>
         <Card bordered={false}>
-          <Form layout="inline">
-            <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
-              <FormItem>
-                {getFieldDecorator('category')(
-                  <TagSelect onChange={this.handleFormSubmit} expandable>
-                    <TagSelect.Option value="cat1">类目一</TagSelect.Option>
-                    <TagSelect.Option value="cat2">类目二</TagSelect.Option>
-                    <TagSelect.Option value="cat3">类目三</TagSelect.Option>
-                    <TagSelect.Option value="cat4">类目四</TagSelect.Option>
-                    <TagSelect.Option value="cat5">类目五</TagSelect.Option>
-                    <TagSelect.Option value="cat6">类目六</TagSelect.Option>
-                    <TagSelect.Option value="cat7">类目七</TagSelect.Option>
-                    <TagSelect.Option value="cat8">类目八</TagSelect.Option>
-                    <TagSelect.Option value="cat9">类目九</TagSelect.Option>
-                    <TagSelect.Option value="cat10">类目十</TagSelect.Option>
-                    <TagSelect.Option value="cat11">类目十一</TagSelect.Option>
-                    <TagSelect.Option value="cat12">类目十二</TagSelect.Option>
-                  </TagSelect>
-                )}
-              </FormItem>
-            </StandardFormRow>
-            <StandardFormRow title="owner" grid>
-              <Row>
-                <Col lg={16} md={24} sm={24} xs={24}>
-                  <FormItem>
-                    {getFieldDecorator('owner', {
-                      initialValue: ['wjh', 'zxx'],
-                    })(
-                      <Select
-                        mode="multiple"
-                        style={{ maxWidth: 286, width: '100%' }}
-                        placeholder="选择 owner"
-                      >
-                        {owners.map(owner => (
-                          <Option key={owner.id} value={owner.id}>
-                            {owner.name}
-                          </Option>
-                        ))}
-                      </Select>
-                    )}
-                    <a className={styles.selfTrigger} onClick={this.setOwner}>
-                      只看自己的
-                    </a>
-                  </FormItem>
-                </Col>
-              </Row>
-            </StandardFormRow>
-            <StandardFormRow title="其它选项" grid last>
-              <Row gutter={16}>
-                <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                  <FormItem {...formItemLayout} label="活跃用户">
-                    {getFieldDecorator('user', {})(
-                      <Select
-                        onChange={this.handleFormSubmit}
-                        placeholder="不限"
-                        style={{ maxWidth: 200, width: '100%' }}
-                      >
-                        <Option value="lisa">李三</Option>
-                      </Select>
-                    )}
-                  </FormItem>
-                </Col>
-                <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                  <FormItem {...formItemLayout} label="好评度">
-                    {getFieldDecorator('rate', {})(
-                      <Select
-                        onChange={this.handleFormSubmit}
-                        placeholder="不限"
-                        style={{ maxWidth: 200, width: '100%' }}
-                      >
-                        <Option value="good">优秀</Option>
-                      </Select>
-                    )}
-                  </FormItem>
-                </Col>
-              </Row>
-            </StandardFormRow>
-          </Form>
-        </Card>
-        <Card
-          style={{ marginTop: 24 }}
-          bordered={false}
-          bodyStyle={{ padding: '8px 32px 32px 32px' }}
+        <div style={{display:'flex'}}>
+          <iframe
+          width="1200"
+          height="1200"
+          seamless
+          frameBorder="0"
+          scrolling="no"
+          src="http://18.208.185.17:8088/superset/explore/?form_data=%7B%22queryFields%22%3A%7B%22groupby%22%3A%22groupby%22%2C%22metric%22%3A%22metrics%22%7D%2C%22datasource%22%3A%221__table%22%2C%22viz_type%22%3A%22directed_force%22%2C%22slice_id%22%3A345%2C%22url_params%22%3A%7B%7D%2C%22time_range_endpoints%22%3A%5B%22unknown%22%2C%22inclusive%22%5D%2C%22time_range%22%3A%22Last+week%22%2C%22groupby%22%3A%5B%22source%22%2C%22target%22%5D%2C%22metric%22%3A%22sum__value%22%2C%22adhoc_filters%22%3A%5B%5D%2C%22row_limit%22%3A%225000%22%2C%22link_length%22%3A%22200%22%2C%22charge%22%3A%22-500%22%7D"
+          style={{margin:'auto'}}
         >
-          <List
-            size="large"
-            loading={list.length === 0 ? loading : false}
-            rowKey="id"
-            itemLayout="vertical"
-            loadMore={loadMore}
-            dataSource={list}
-            renderItem={item => (
-              <List.Item
-                key={item.id}
-                actions={[
-                  <IconText type="star-o" text={item.star} />,
-                  <IconText type="like-o" text={item.like} />,
-                  <IconText type="message" text={item.message} />,
-                ]}
-                extra={<div className={styles.listItemExtra} />}
-              >
-                <List.Item.Meta
-                  title={
-                    <a className={styles.listItemMetaTitle} href={item.href}>
-                      {item.title}
-                    </a>
-                  }
-                  description={
-                    <span>
-                      <Tag>Ant Design</Tag>
-                      <Tag>设计语言</Tag>
-                      <Tag>蚂蚁金服</Tag>
-                    </span>
-                  }
-                />
-                <ListContent data={item} />
-              </List.Item>
-            )}
-          />
-        </Card>
-      </Fragment>
+        </iframe>
+        </div>
+        </Card> 
+        </Fragment>
     );
   }
 }

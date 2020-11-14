@@ -3,6 +3,10 @@ import router from 'umi/router';
 import { connect } from 'dva';
 import { Input } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
+import ChordChartPlugin from '@superset-ui/legacy-plugin-chart-force-directed';
+
+new ChordChartPlugin().configure({ key: 'force-directed' })
+.register();
 
 export default
 @connect()
@@ -62,7 +66,19 @@ class SearchList extends Component {
         tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
         onTabChange={this.handleTabChange}
       >
-        {children}
+        <div style={{display:'flex'}}>
+          <iframe
+          width="1200"
+          height="1200"
+          seamless
+          frameBorder="0"
+          scrolling="no"
+          src="http://18.208.185.17:8088/superset/explore/?r=34&standalone=true&height=1200"
+          style={{margin:'auto'}}
+        >
+        </iframe>
+        </div>
+     
         {/* <Switch>
           {routes.map(item => (
             <Route key={item.key} path={item.path} component={item.component} exact={item.exact} />
