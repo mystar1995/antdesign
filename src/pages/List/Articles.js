@@ -123,8 +123,11 @@ class SearchList extends Component {
           seamless
           frameBorder="0"
           scrolling="no"
-          src="http://18.208.185.17:8088/superset/explore/?form_data=%7B%22queryFields%22%3A%7B%22groupby%22%3A%22groupby%22%2C%22metric%22%3A%22metrics%22%7D%2C%22datasource%22%3A%221__table%22%2C%22viz_type%22%3A%22directed_force%22%2C%22slice_id%22%3A345%2C%22url_params%22%3A%7B%7D%2C%22time_range_endpoints%22%3A%5B%22unknown%22%2C%22inclusive%22%5D%2C%22time_range%22%3A%22Last+week%22%2C%22groupby%22%3A%5B%22source%22%2C%22target%22%5D%2C%22metric%22%3A%22sum__value%22%2C%22adhoc_filters%22%3A%5B%5D%2C%22row_limit%22%3A%225000%22%2C%22link_length%22%3A%22200%22%2C%22charge%22%3A%22-500%22%7D"
+          src="http://18.208.185.17:8088/superset/explore/?form_data=%7B%22queryFields%22%3A%7B%22groupby%22%3A%22groupby%22%2C%22metric%22%3A%22metrics%22%7D%2C%22datasource%22%3A%221__table%22%2C%22viz_type%22%3A%22directed_force%22%2C%22slice_id%22%3A345%2C%22url_params%22%3A%7B%7D%2C%22time_range_endpoints%22%3A%5B%22unknown%22%2C%22inclusive%22%5D%2C%22time_range%22%3A%22Last+week%22%2C%22groupby%22%3A%5B%22source%22%2C%22target%22%5D%2C%22metric%22%3A%22sum__value%22%2C%22adhoc_filters%22%3A%5B%5D%2C%22row_limit%22%3A%225000%22%2C%22link_length%22%3A%22200%22%2C%22charge%22%3A%22-500%22%7D&menudisable=true"
           style={{margin:'auto'}}
+          onLoad={(e)=>{
+            console.log(e.currentTarget.contentDocument);
+          }}
         >
         </iframe>
         </div>

@@ -2,6 +2,11 @@ import mockjs from 'mockjs';
 import config from './config.json';
 import mysql from 'mysql';
 import brainconfig from './braintree_config.json';
+import rp from 'request-promise';
+import got from 'got';
+import jsdom from 'jsdom';
+
+const {JSDOM} = jsdom;
 
 var braintree = require('braintree');
 const conn = mysql.createConnection(config);
@@ -426,6 +431,53 @@ function getFakeCaptcha(req, res) {
   return res.json('captcha-xxx');
 }
 
+function getchart(req,response)
+{
+  const url = "http://18.208.185.17:8088/superset/explore/?form_data=%7B%22queryFields%22%3A%7B%22groupby%22%3A%22groupby%22%2C%22metric%22%3A%22metrics%22%7D%2C%22datasource%22%3A%221__table%22%2C%22viz_type%22%3A%22directed_force%22%2C%22slice_id%22%3A345%2C%22url_params%22%3A%7B%7D%2C%22time_range_endpoints%22%3A%5B%22unknown%22%2C%22inclusive%22%5D%2C%22time_range%22%3A%22Last+week%22%2C%22groupby%22%3A%5B%22source%22%2C%22target%22%5D%2C%22metric%22%3A%22sum__value%22%2C%22adhoc_filters%22%3A%5B%5D%2C%22row_limit%22%3A%225000%22%2C%22link_length%22%3A%22200%22%2C%22charge%22%3A%22-500%22%7D";
+  got(url).then(res=>{
+    const dom = new JSDOM(res.body);
+    dom.window.document.querySelectorAll('link').forEach(link=>{
+      let href = link.href;
+      
+      try
+      {
+        let url = new URL(href);
+      }
+      catch(e)
+      {
+        link.setAttribute('href',"http://18.208.185.17:8088/" + href);
+      }
+    })
+
+    dom.window.document.querySelectorAll('script').forEach(link=>{
+      let href = link.src;
+      
+      try
+      {
+        let url = new URL(href);
+      }
+      catch(e)
+      {
+        link.setAttribute('src',"http://18.208.185.17:8088/" + href);
+      }
+    })
+
+    dom.window.document.querySelectorAll('img').forEach(link=>{
+      let href = link.src;
+      try
+      {
+        let url = new URL(href);
+      }
+      catch(e)
+      {
+        link.setAttribute('src',"http://18.208.185.17:8088/" + href);
+      }
+    })
+
+    response.send(dom.window.document.documentElement.outerHTML);
+  })
+}
+
 export default {
   'GET /api/project/notice': getNotice,
   'GET /api/activities': getActivities,
@@ -441,5 +493,6 @@ export default {
   'GET /api/accesstoken':getaccesstoken,
   'POST /api/transaction':transaction,
   'POST /api/save_transaction':save_transaction,
-  'GET /api/get_transaction':get_transaction
+  'GET /api/get_transaction':get_transaction,
+  'GET /api/chart':getchart
 };

@@ -33,11 +33,14 @@
     "bizcharts-plugin-slider": "^2.0.3",
     "braintree": "^3.0.0",
     "braintree-web-drop-in-react": "^1.2.1",
+    "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
     "enquire-js": "^0.2.1",
+    "got": "^11.8.0",
     "hash.js": "^1.1.5",
     "jquery": "^3.5.1",
+    "jsdom": "^16.4.0",
     "lodash": "^4.17.10",
     "lodash-decorators": "^6.0.0",
     "memoize-one": "^4.0.0",
@@ -61,6 +64,7 @@
     "react-paypal-express-checkout": "^1.0.5",
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.3.1",
+    "request-promise": "^4.2.6",
     "umi": "^2.0.0-beta.10"
   },
   "devDependencies": {
